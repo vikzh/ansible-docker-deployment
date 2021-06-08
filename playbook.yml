@@ -1,0 +1,21 @@
+---
+- name: Setup redmine servers
+  hosts: all
+
+  vars:
+    pip_install_packages:
+      - name: docker
+
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+  tasks:
+
+  - name: Restart a container
+    community.docker.docker_container:
+      name: redmine
+      image: redmine:4.2.1
+      state: started
+      ports:
+       - "80:3000"
