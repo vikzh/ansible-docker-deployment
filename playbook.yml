@@ -5,45 +5,11 @@
   vars:
     pip_install_packages:
       - name: docker
-    datadog_api_key: '{{ datadog_key  }}'
-    datadog_site: "us3.datadoghq.com"
-    datadog_checks:
-      process:
-        init_config:
-        instances:
-          - name: ssh
-            search_string: ['ssh', 'sshd']
-          - name: syslog
-            search_string: ['rsyslog']
-            cpu_check_interval: 0.2
-            exact_match: true
-            ignore_denied_access: true
-      http_check:
-        init_config:
-          - name: Application health check status
-            url: http://localhost:3000
-            timeout: 5
-            method: GET
 
   roles:
     - geerlingguy.pip
     - geerlingguy.docker
+    - docker-server
     - { role: datadog.datadog, become: yes }
-
-  tasks:
-
-  - name: Restart a container
-    community.docker.docker_container:
-      name: redmine
-      image: redmine:4.2.1
-      state: started
-      ports:
-       - "80:3000"
-      env:
-        REDMINE_DB_POSTGRES: "db-redmine-do-user-9275632-0.b.db.ondigitalocean.com"
-        REDMINE_DB_USERNAME: "doadmin"
-        REDMINE_DB_PASSWORD: '{{ db_password }}'
-        REDMINE_DB_PORT: "25060"
-        REDMINE_DB_DATABASE: "defaultdb"
-    tags:
-    - containers
+    - datadog
+...
