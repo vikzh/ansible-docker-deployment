@@ -1,4 +1,15 @@
 ---
+- name: Update cache
+  apt:
+    update_cache: yes
+
+- name: Install pip
+  include_role:
+    name: geerlingguy.pip
+  vars:
+    pip_install_packages:
+      - name: docker
+
 - name: Restart a container
   community.docker.docker_container:
     container_default_behavior: compatibility
