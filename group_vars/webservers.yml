@@ -1,4 +1,6 @@
 ---
+pip_install_packages:
+  - name: docker
 db_password: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              36353064626232356337366661376361383561613337373865643064303031303933313639663765
