@@ -4,3 +4,6 @@ install:
 
 deploy:
 	ansible-playbook playbook.yml -i inventory.ini --ask-vault-password
+
+encrypt:
+	ansible-vault encrypt_string --name 'ansible_password'
