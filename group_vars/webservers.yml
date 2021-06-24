@@ -1,6 +1,11 @@
 ---
 pip_install_packages:
   - name: docker
+
+db_host: "db-redmine-do-user-9275632-0.b.db.ondigitalocean.com"
+db_username: "doadmin"
+db_port: "25060"
+db_name: "defaultdb"
 db_password: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              36353064626232356337366661376361383561613337373865643064303031303933313639663765
@@ -8,6 +13,7 @@ db_password: !vault |
              32373439343763613532643037333338343831333333663261616364653433383336663536613136
              6261313732623862610a353063623637303264313266393237613234346430636537326237663130
              64313665383963626463646232623465303539383030376163313138646437373863
+
 datadog_key: !vault |
              $ANSIBLE_VAULT;1.1;AES256
              34356161306364393665343032356137386362363334306539666561373434323832393030343831
@@ -16,8 +22,23 @@ datadog_key: !vault |
              3662633764396230370a336464656536373934613631666539346463353263633538316263636139
              34633834623630313739313531623831626364373766393265613866666162613032666565366663
              6439636134633232616134356666376130373437323938326361
-db_host: "db-redmine-do-user-9275632-0.b.db.ondigitalocean.com"
-db_username: "doadmin"
-db_port: "25060"
-db_name: "defaultdb"
+datadog_api_key: '{{ datadog_key  }}'
+datadog_site: "us3.datadoghq.com"
+datadog_checks:
+  process:
+    init_config:
+    instances:
+      - name: ssh
+        search_string: ['ssh', 'sshd']
+      - name: syslog
+        search_string: ['rsyslog']
+        cpu_check_interval: 0.2
+        exact_match: true
+        ignore_denied_access: true
+  http_check:
+    init_config:
+      - name: Application health check status
+        url: http://localhost:3000
+        timeout: 5
+        method: GET
 ...
