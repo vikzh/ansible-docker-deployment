@@ -1,7 +1,4 @@
-ifndef VAR_NAME
-override VAR_NAME = datadog_key
-endif
-
+VAR_NAME = datadog_key
 
 install:
 	ansible-galaxy collection install -r requirements.yml
