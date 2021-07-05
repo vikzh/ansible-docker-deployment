@@ -14,6 +14,10 @@
   tags:
     - pip
 
+- name: debug
+  debug:
+    msg: "{{ redmine_port }}:3000"
+
 - name: Restart a container
   community.docker.docker_container:
     container_default_behavior: compatibility
