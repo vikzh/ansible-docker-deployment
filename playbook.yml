@@ -2,7 +2,6 @@
 - name: Setup redmine servers
   hosts: all
   roles:
-    - geerlingguy.pip
     - docker-server
 
 - name: Setup datadog
