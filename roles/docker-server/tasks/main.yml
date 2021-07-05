@@ -2,6 +2,8 @@
 - name: Update cache
   apt:
     update_cache: yes
+  tags:
+    - cache
 
 - name: Install pip
   include_role:
@@ -9,6 +11,8 @@
   vars:
     pip_install_packages:
       - name: docker
+  tags:
+    - pip
 
 - name: Restart a container
   community.docker.docker_container:
@@ -17,7 +21,7 @@
     image: redmine:4.2.1
     state: started
     ports:
-     - "80:3000"
+     - '{{ redmine_port }}:3000'
     env:
       REDMINE_DB_POSTGRES: '{{ db_host }}'
       REDMINE_DB_USERNAME: '{{ db_username }}'

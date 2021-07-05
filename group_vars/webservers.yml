@@ -2,6 +2,8 @@
 pip_install_packages:
   - name: docker
 
+redmine_port: 80
+
 db_host: "db-redmine-do-user-9275632-0.b.db.ondigitalocean.com"
 db_username: "doadmin"
 db_port: "25060"
@@ -38,7 +40,7 @@ datadog_checks:
   http_check:
     init_config:
       - name: Application health check status
-        url: http://localhost:3000
+        url: 'http://localhost: {{ redmine_port }}'
         timeout: 5
         method: GET
 ...
