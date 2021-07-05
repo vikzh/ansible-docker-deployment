@@ -40,7 +40,7 @@ datadog_checks:
   http_check:
     init_config:
       - name: Application health check status
-        url: 'http://localhost: {{ redmine_port }}'
+        url: "http://localhost: {{ redmine_port }}"
         timeout: 5
         method: GET
 ...

@@ -21,7 +21,7 @@
     image: redmine:4.2.1
     state: started
     ports:
-     - '{{ redmine_port }}:3000'
+     - "{{ redmine_port }}":3000
     env:
       REDMINE_DB_POSTGRES: '{{ db_host }}'
       REDMINE_DB_USERNAME: '{{ db_username }}'
