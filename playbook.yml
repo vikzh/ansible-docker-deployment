@@ -3,6 +3,7 @@
   hosts: all
   roles:
     - docker-server
+    - redmine-server
 
 - name: Setup datadog
   hosts: webservers
