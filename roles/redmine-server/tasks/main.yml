@@ -3,7 +3,7 @@
   community.docker.docker_container:
     container_default_behavior: compatibility
     name: redmine
-    image: redmine:4.2.1
+    image: "redmine: {{ redmine_version }}"
     state: started
     ports:
      - "{{ redmine_port }}:3000"
