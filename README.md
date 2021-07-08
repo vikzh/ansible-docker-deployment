@@ -10,7 +10,7 @@ make deploy
 
 ## Encrypt ansible key
 ```shell
-make encrypt VAR_NAME=`
+make encrypt VAR_NAME=
 ```
 
 ## Setup
