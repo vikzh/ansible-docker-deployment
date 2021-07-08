@@ -15,4 +15,6 @@
       REDMINE_DB_DATABASE: '{{ db_name }}'
   tags:
   - containers
+  - redmine-server
+  - config
 ...

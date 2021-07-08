@@ -4,6 +4,8 @@
     update_cache: yes
   tags:
     - cache
+    - install
+    - docker-server
 
 - name: Install pip
   include_role:
@@ -13,4 +15,6 @@
       - name: docker
   tags:
     - pip
+    - install
+    - docker-server
 ...
