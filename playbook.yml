@@ -6,7 +6,7 @@
     - redmine-server
 
 - name: Setup datadog
-  hosts: webservers
+  hosts: all
   roles:
     - { role: datadog.datadog, become: yes }
 ...
